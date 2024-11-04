@@ -3,7 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import ProjectCard from "./ProjectCards";
 import Particle from "../Particle";
 import editor from "../../Assets/Projects/readme-img.png";
-import chatify from "../../Assets/Projects/chatify.png";
+import chatify from "../../Assets/Projects/codeEditor.png";
 function Projects() {
   return (
     <Container fluid className="project-section">
