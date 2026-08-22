@@ -1,5 +1,4 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
 import {
   AiFillGithub,
   AiOutlineTwitter,
@@ -11,20 +10,15 @@ function Footer() {
   let date = new Date();
   let year = date.getFullYear();
   return (
-    <Container fluid className="footer">
-      <Row>
-        <Col md="4" className="footer-copywright">
+    <footer className="border-t border-white/10 px-6 py-8 text-center text-sm text-slate-300">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-5 md:flex-row">
           <h3>Designed and Developed by mehtab singh</h3>
-        </Col>
-        <Col md="4" className="footer-copywright">
           <h3>Copyright © {year} MS</h3>
-        </Col>
-        <Col md="4" className="footer-body">
-          <ul className="footer-icons">
+          <ul className="flex gap-3">
             <li className="social-icons">
               <a
                 href="https://github.com/"
-                style={{ color: "white" }}
+                className="icon-button"
                 target="_blank" 
                 rel="noopener noreferrer"
               >
@@ -34,7 +28,7 @@ function Footer() {
             <li className="social-icons">
               <a
                 href="https://x.com/i/flow/login"
-                style={{ color: "white" }}
+                className="icon-button"
                 target="_blank" 
                 rel="noopener noreferrer"
               >
@@ -44,7 +38,7 @@ function Footer() {
             <li className="social-icons">
               <a
                 href="https://www.linkedin.com/"
-                style={{ color: "white" }}
+                className="icon-button"
                 target="_blank" 
                 rel="noopener noreferrer"
               >
@@ -54,7 +48,7 @@ function Footer() {
             <li className="social-icons">
               <a
                 href="https://www.instagram.com/"
-                style={{ color: "white" }}
+                className="icon-button"
                 target="_blank" 
                 rel="noopener noreferrer"
               >
@@ -62,9 +56,8 @@ function Footer() {
               </a>
             </li>
           </ul>
-        </Col>
-      </Row>
-    </Container>
+      </div>
+    </footer>
   );
 }
 

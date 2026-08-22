@@ -1,8 +1,310 @@
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap");
-body {
-  margin: 0;
-  font-family: "Raleway", serif !important;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-image: linear-gradient(to left, rgb(27 20 41), rgb(20 15 35));
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================================================
+   ROOT VARIABLES
+========================================================= */
+
+:root {
+  --bg-primary: #07111f;
+  --bg-secondary: #0b1728;
+  --bg-tertiary: #101827;
+
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+
+  --purple: #c084fc;
+  --fuchsia: #e879f9;
+  --cyan: #22d3ee;
+  --blue: #38bdf8;
+  --indigo: #6366f1;
+
+  --border: rgba(255, 255, 255, 0.1);
+  --glass: rgba(255, 255, 255, 0.04);
+}
+
+/* =========================================================
+   BASE
+========================================================= */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+
+    font-family: "Raleway", sans-serif;
+    font-weight: 500;
+
+    color: var(--text-primary);
+
+    background:
+      radial-gradient(
+        circle at 90% 10%,
+        rgba(34, 211, 238, 0.12),
+        transparent 30%
+      ),
+      radial-gradient(
+        circle at 10% 90%,
+        rgba(99, 102, 241, 0.12),
+        transparent 30%
+      ),
+      radial-gradient(
+        circle at 50% 40%,
+        rgba(192, 132, 252, 0.05),
+        transparent 35%
+      ),
+      linear-gradient(
+        135deg,
+        var(--bg-primary) 0%,
+        var(--bg-secondary) 50%,
+        var(--bg-tertiary) 100%
+      );
+
+    background-attachment: fixed;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    overflow-x: hidden;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  ::selection {
+    background: rgba(34, 211, 238, 0.25);
+    color: #ffffff;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+}
+
+/* =========================================================
+   REUSABLE COMPONENTS
+========================================================= */
+
+@layer components {
+  .purple {
+    color: var(--purple);
+  }
+
+  .cyan {
+    color: var(--cyan);
+  }
+
+  /*
+    Used by:
+    About.jsx
+    Skills.jsx
+    Toolstack.jsx
+    Github.jsx
+    Leetcode.jsx
+  */
+
+  .gradient-text {
+    background: linear-gradient(
+      90deg,
+      var(--purple) 0%,
+      var(--fuchsia) 45%,
+      var(--cyan) 100%
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .glass {
+    @apply border border-white/10 bg-white/5 backdrop-blur-md;
+  }
+
+  .icon-button {
+    @apply inline-flex h-11 w-11 items-center justify-center
+      rounded-lg
+      border border-white/10
+      bg-white/5
+      text-2xl text-white
+      transition-all duration-300
+      hover:-translate-y-1
+      hover:border-cyan-300/50
+      hover:bg-cyan-300/10
+      hover:text-cyan-300
+      hover:shadow-lg
+      hover:shadow-cyan-500/10;
+  }
+
+  .section-title {
+    @apply text-3xl font-bold tracking-tight text-white md:text-4xl;
+  }
+
+  .section-subtitle {
+    @apply mt-3 text-sm leading-7 text-slate-400 md:text-base;
+  }
+}
+
+/* =========================================================
+   FLOATING ANIMATION
+========================================================= */
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+/* =========================================================
+   PRELOADER
+========================================================= */
+
+#preloader {
+  position: fixed;
+  inset: 0;
+
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--bg-primary);
+
+  background-image: url("./Assets/pre.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 80px auto;
+
+  transition:
+    opacity 0.4s ease,
+    visibility 0.4s ease;
+}
+
+#preloader-none {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* =========================================================
+   BODY LOCK
+========================================================= */
+
+#no-scroll {
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* =========================================================
+   PARTICLES
+========================================================= */
+
+#tsparticles {
+  position: fixed !important;
+
+  inset: 0;
+
+  z-index: 0;
+
+  pointer-events: none;
+
+  overflow: hidden;
+}
+
+/*
+  Application content stays above particles.
+*/
+
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.3);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 211, 238, 0.5);
+}
+
+/* Firefox */
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color:
+    rgba(148, 163, 184, 0.3)
+    var(--bg-primary);
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll;
+  }
+
+  #preloader {
+    background-size: 65px auto;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
